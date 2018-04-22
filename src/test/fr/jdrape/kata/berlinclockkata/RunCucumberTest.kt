@@ -1,10 +1,10 @@
 package fr.jdrape.kata.berlinclockkata
 
 
-import org.junit.runner.RunWith;
+import org.junit.runner.RunWith
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
+import cucumber.api.CucumberOptions
+import cucumber.api.junit.Cucumber
 
 @RunWith(Cucumber::class)
 @CucumberOptions(features = arrayOf("src/test/resources/features"), plugin = arrayOf( "pretty", "html:target/cucumber-reports/cucumber-pretty",

@@ -15,7 +15,7 @@ class BerlinClockServiceImpl : BerlinClockService {
         val minutes = timeSplit.get(1)
         val seconds = timeSplit.get(2)
 
-        return calculateSecondsLampRow(seconds) + calculateFiveHoursRow(hours) + calculateSingleHoursRow(hours) + calculateFiveMinutesRow(minutes) + calculateSingleMinutesRow(minutes);
+        return calculateSecondsLampRow(seconds) + calculateFiveHoursRow(hours) + calculateSingleHoursRow(hours) + calculateFiveMinutesRow(minutes) + calculateSingleMinutesRow(minutes)
     }
 
     /**
@@ -47,7 +47,7 @@ class BerlinClockServiceImpl : BerlinClockService {
                 numberLampToOn = hours / 5,
                 onState = RED,
                 numberLamp = 4
-        );
+        )
     }
 
     /**
@@ -62,7 +62,7 @@ class BerlinClockServiceImpl : BerlinClockService {
                 numberLampToOn = hours % 5,
                 onState = RED,
                 numberLamp = 4
-        );
+        )
     }
 
     /**
@@ -76,9 +76,9 @@ class BerlinClockServiceImpl : BerlinClockService {
         fun show5MinutesRow(builder:StringBuilder, index:Int):Unit{
             // each 3 LAMP, it's RED
             if (index % 3 == 0) {
-                builder.append(RED.code);
+                builder.append(RED.code)
             } else {
-                builder.append(YELLOW.code);
+                builder.append(YELLOW.code)
             }
         }
 
@@ -97,7 +97,7 @@ class BerlinClockServiceImpl : BerlinClockService {
      * @return : single minutes in berlin clock format
      */
     fun calculateSingleMinutesRow(minutes:Int) : String {
-        return calculateRow(numberLampToOn = minutes % 5, onState = YELLOW, numberLamp = 4);
+        return calculateRow(numberLampToOn = minutes % 5, onState = YELLOW, numberLamp = 4)
     }
 
     /**
@@ -116,22 +116,22 @@ class BerlinClockServiceImpl : BerlinClockService {
             numberLamp:Int,
             specificLampOn :((builder:StringBuilder, index:Int)->Unit) ? = null
     ) :String{
-        val row = StringBuilder();
+        val row = StringBuilder()
         for (i in 1..numberLamp) {
             // we illuminate only some lamps
             if (i <= numberLampToOn) {
                 if (specificLampOn == null){
                     if (onState !=null) {
-                        row.append(onState.code);
+                        row.append(onState.code)
                     }
                 } else {
                     specificLampOn(row,i)
                 }
             } else {
-                row.append(OFF.code);
+                row.append(OFF.code)
             }
         }
-        return row.toString();
+        return row.toString()
     }
 
 }
